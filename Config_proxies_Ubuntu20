@@ -1,13 +1,16 @@
 #Config proxy for all users
 nano /etc/environment
+printf -v lan '%s,' localip_of_machine
+printf -v pool '%s,' 192.168.0.{1..253}
+printf -v service '%s,' 10.96.0.{1..253}
 http_proxy="http://proxy.server.ip:port"
 https_proxy="http(s)://proxy.server.ip:port" #Add s depending on your proxy server
 ftp_proxy="http://proxy.server.ip:port"
-no_proxy="localhost,127.0.0.1,ip.address,192.168.0.{1..253},10.96.0.{1..253}"
+no_proxy="${lan%,},${service%,},${pool%,},127.0.0.1"
 HTTP_PROXY="http://proxy.server.ip:port"
 HTTPS_PROXY="http(s)://proxy.server.ip:port" #Add s depending on your proxy server
 FTP_PROXY="http://proxy.server.ip:port"
-NO_PROXY="localhost,127.0.0.1,ip.address,192.168.0.{1..253},10.96.0.{1..253}"
+NO_PROXY="${lan%,},${service%,},${pool%,},127.0.0.1"
 
 #Config proxy for APT
 nano /etc/apt/apt.conf.d/95proxies
