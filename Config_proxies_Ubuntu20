@@ -1,8 +1,5 @@
 #Config proxy for all users
 nano /etc/environment
-printf -v lan '%s,' localip_of_machine
-printf -v pool '%s,' 192.168.0.{1..253}
-printf -v service '%s,' 10.96.0.{1..253}
 http_proxy="http://proxy.server.ip:port"
 https_proxy="http(s)://proxy.server.ip:port" #Add s depending on your proxy server
 ftp_proxy="http://proxy.server.ip:port"
